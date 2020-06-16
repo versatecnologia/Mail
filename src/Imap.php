@@ -434,7 +434,7 @@ class Imap extends Base
     }
 
     /**
-     * Moves an email to another mailbox
+     * Moves an email from folder to other folder
      *
      * @param *number $uid     The mail unique ID
      * @param *string $mailbox The mailbox destination
@@ -449,9 +449,7 @@ class Imap extends Base
             $this->connect();
         }
 
-        $this->call('UID COPY '.$uid.' '.$mailbox);
-
-        return $this->remove($uid);
+        return $this->call('UID MOVE '.$uid.' '.$mailbox);
     }
 
     /**
